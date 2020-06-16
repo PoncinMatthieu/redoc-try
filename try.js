@@ -16,7 +16,7 @@ function initTry (userCfg) {
       trySwaggerInApi: true, // 是否把 swagger 调试窗口显示在 api 下面? true: 是, false: 显示在 Request 后面, 当 Request 比较大时可能看不到调试窗口了
       redocOptions: [
         redoc_openApi || userCfg.openApi || testOpenApi,
-        redoc_options || {enableConsole: true},
+        redoc_options || userCfg.redocCfg || {enableConsole: true},
         redoc_dom || document.getElementById('redoc-container'),
         redoc_callBack || function () {
           initSwagger(cfg.swaggerOptions)
