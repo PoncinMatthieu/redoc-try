@@ -8,7 +8,7 @@ function initTry (userCfg) {
     `//unpkg.com/swagger-ui-dist@3.25.1/swagger-ui-bundle.js`,
   ], () => {
     const testOpenApi = `//httpbin.org/spec.json` // `//petstore.swagger.io/v2/swagger.json`
-    const [redoc_openApi, redoc_options, redoc_dom, redoc_callBack] = userCfg.redocOptions || []
+    const [redoc_openApi, redoc_options, redoc_dom, redoc_callBack] = userCfg.redocCfg || []
     const cfg = {
       openApi: testOpenApi,
       onlySwagger: false, // 仅渲染 swagger, 某些情况下 redoc 会渲染 openApi 错误
@@ -16,7 +16,7 @@ function initTry (userCfg) {
       trySwaggerInApi: true, // 是否把 swagger 调试窗口显示在 api 下面? true: 是, false: 显示在 Request 后面, 当 Request 比较大时可能看不到调试窗口了
       redocOptions: [
         redoc_openApi || userCfg.openApi || testOpenApi,
-        redoc_options || {enableConsole: true},
+        redoc_options || userCfg.redocOptions || {enableConsole: true},
         redoc_dom || document.getElementById('redoc-container'),
         redoc_callBack || function () {
           initSwagger(cfg.swaggerOptions)
